@@ -1,4 +1,11 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.4.6/schema.json",
-  "extends": ["@maxchang/biome-config"]
+  "extends": ["@maxchang/biome-config"],
+  "linter": {
+    "rules": {
+      "complexity": {
+        "noImportantStyles": "off"
+      }
+    }
+  }
 }

@@ -1,0 +1,34 @@
+.raase #mfContainer {
+  display: none;
+}
+
+.raase .mask-paper {
+  background: none !important;
+  backdrop-filter: none !important;
+  min-height: 100vh;
+}
+
+.raase .input-box {
+  top: 35%;
+  left: 55% !important;
+}
+
+.raase .side-bar {
+  z-index: 999;
+}
+
+@media screen and (max-width: 695px) {
+  .raase .input-box {
+    width: 80% !important;
+    padding: 0 84px 0 16px !important;
+  }
+  .raase .min-width-search-icon {
+    display: none !important;
+  }
+  .raase .input-button {
+    opacity: 1 !important;
+  }
+  .raase #search-input {
+    padding: 10px;
+  }
+}
