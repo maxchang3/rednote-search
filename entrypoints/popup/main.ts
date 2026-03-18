@@ -63,13 +63,11 @@ app.innerHTML = `
   <main class="popup-shell">
     <header class="popup-header">
       <h1>小红搜</h1>
+      <button type="button" class="reset-button" data-reset-settings>重置配置</button>
     </header>
     <section class="feature-list">
       ${renderFeatures()}
     </section>
-    <footer class="popup-footer">
-      <button type="button" class="reset-button" data-reset-settings>重置配置</button>
-    </footer>
   </main>
 `
 
