@@ -24,12 +24,9 @@ export const initFeatures = async (ctx: ContentScriptContext) => {
     slashFocus: setupSlashFocus,
   } satisfies FeatureRuntimeMap
 
-  const getFeatureSetup = <TFeatureId extends FeatureId>(featureId: TFeatureId): FeatureSetup<TFeatureId> => {
-    return runtimeFeatures[featureId] as unknown as FeatureSetup<TFeatureId>
-  }
-
   const createRuntime = <TFeatureId extends FeatureId>(featureId: TFeatureId) => {
-    return getFeatureSetup(featureId)(createFeatureContext(featureId))
+    const setup = runtimeFeatures[featureId] as unknown as FeatureSetup<TFeatureId>
+    return setup(createFeatureContext(featureId))
   }
 
   const runtimes = featureDefinitions.map((feature) => createRuntime(feature.id))
