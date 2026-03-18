@@ -39,7 +39,7 @@ Use `pnpm` for all package management and scripts.
 Preferred validation after code changes:
 
 1. `pnpm typecheck`
-2. `pnpm lint` or `pnpm lint:fix`
+2. `pnpm lint:fix`
 
 When developing, there is no need to run `pnpm compile` or `pnpm build` after every change; WXT's dev mode handles on-the-fly compilation and hot reload for content scripts and popup.
 
