@@ -7,7 +7,7 @@ It is designed to reduce feed noise and make Xiaohongshu feel more like a focuse
 Main features:
 
 - Hide the home feed and distracting homepage content
-- Remove Live Stream, Creator, and Notifications entries from the sidebar
+- Remove Live Stream, Publish, and Notifications entries from the sidebar
 - Hide the suggested searches below the search box
 - Hide the unread badge on the Notifications button
 - Focus the search box quickly with `/`

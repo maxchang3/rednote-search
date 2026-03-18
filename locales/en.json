@@ -24,8 +24,8 @@
           "description": "Hide the Live Stream button in the sidebar."
         },
         "publish": {
-          "title": "Creator",
-          "description": "Hide the Creator button in the sidebar."
+          "title": "Publish",
+          "description": "Hide the Publish button in the sidebar."
         },
         "notification": {
           "title": "Notifications",
