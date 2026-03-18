@@ -2,11 +2,11 @@ type FeatureSettingsStorageValue = Partial<Record<string, unknown>>
 
 type FeatureSettingMap<TFeatureId extends FeatureId = FeatureId> = Record<FeatureSettingId<TFeatureId>, boolean>
 
-type FeatureSettings = {
+export type FeatureSettings = {
   [K in FeatureId]: FeatureSettingMap<K>
 }
 
-const FEATURE_STORAGE_KEY = 'local:feature-settings'
+const getFeatureStorageKey = (featureId: FeatureId) => `local:feature-settings:${featureId}` as const
 
 const defaultFeatureSettings = Object.fromEntries(
   featureDefinitions.map((feature) => [
@@ -17,53 +17,51 @@ const defaultFeatureSettings = Object.fromEntries(
   ])
 ) as FeatureSettings
 
+const featureSettingsStorage = Object.fromEntries(
+  featureDefinitions.map((feature) => [
+    feature.id,
+    storage.defineItem<FeatureSettingsStorageValue>(getFeatureStorageKey(feature.id), {
+      fallback: defaultFeatureSettings[feature.id],
+    }),
+  ])
+) as {
+  [K in FeatureId]: WxtStorageItem<FeatureSettingsStorageValue, Record<string, unknown>>
+}
+
 const getBool = (value: unknown, fallback: boolean): boolean => (typeof value === 'boolean' ? value : fallback)
 
-const isFeatureSettingsStorageValue = (value: unknown): value is FeatureSettingsStorageValue =>
-  value !== null && typeof value === 'object'
+const getFeatureDefinitionById = <TFeatureId extends FeatureId>(
+  featureId: TFeatureId
+): FeatureDefinitionById<TFeatureId> => {
+  const feature = featureDefinitions.find(
+    (candidate): candidate is FeatureDefinitionById<TFeatureId> => candidate.id === featureId
+  )
+  if (!feature) throw new Error(`Unknown feature: ${featureId}`)
+  return feature
+}
 
 const normalizeFeatureSettingMap = <TFeatureId extends FeatureId>(
-  normalizedValue: FeatureSettingsStorageValue | undefined,
+  value: unknown,
   feature: FeatureDefinitionById<TFeatureId>
 ) => {
+  const normalizedValue = value !== null && typeof value === 'object' ? (value as Record<string, unknown>) : undefined
   const defaultSettings = defaultFeatureSettings[feature.id] as Record<string, boolean>
   const featureSettings = 'setting' in feature ? [feature.setting] : feature.settings
 
   return Object.fromEntries(
-    featureSettings.map((setting) => {
-      const rawFeatureValue = normalizedValue?.[feature.id]
-      const rawSettingValue =
-        rawFeatureValue !== null && typeof rawFeatureValue === 'object'
-          ? (rawFeatureValue as Record<string, unknown>)[setting.id]
-          : undefined
-      const fallbackValue = defaultSettings[setting.id]
-
-      return [setting.id, getBool(rawSettingValue, fallbackValue)]
-    })
+    featureSettings.map((setting) => [setting.id, getBool(normalizedValue?.[setting.id], defaultSettings[setting.id])])
   ) as FeatureSettingMap<TFeatureId>
 }
 
-const normalizeFeatureSettings = (value: unknown): FeatureSettings => {
-  const normalizedValue = isFeatureSettingsStorageValue(value) ? value : undefined
-  return Object.fromEntries(
-    featureDefinitions.map((feature) => [feature.id, normalizeFeatureSettingMap(normalizedValue, feature)])
-  ) as FeatureSettings
-}
-
-const featureSettingsStorage = storage.defineItem<FeatureSettingsStorageValue>(FEATURE_STORAGE_KEY, {
-  fallback: defaultFeatureSettings,
-})
-
 export const loadFeatureSettings = async (): Promise<FeatureSettings> => {
-  return normalizeFeatureSettings(await featureSettingsStorage.getValue())
-}
+  const entries = await Promise.all(
+    featureDefinitions.map(async (feature) => {
+      const value = await featureSettingsStorage[feature.id].getValue()
+      return [feature.id, normalizeFeatureSettingMap(value, feature)] as const
+    })
+  )
 
-const saveFeatureSettings = async (settings: FeatureSettings) => {
-  await featureSettingsStorage.setValue(settings)
-}
-
-const getDefaultFeatureSettings = (): FeatureSettings => {
-  return normalizeFeatureSettings(defaultFeatureSettings)
+  return Object.fromEntries(entries) as FeatureSettings
 }
 
 export const setFeatureSetting = async <TFeatureId extends FeatureId>(
@@ -71,21 +69,35 @@ export const setFeatureSetting = async <TFeatureId extends FeatureId>(
   settingId: FeatureSettingId<TFeatureId>,
   enabled: boolean
 ) => {
-  const settings = await loadFeatureSettings()
-  const nextFeatureSettings = {
-    ...settings[featureId],
-    [settingId]: enabled,
-  } as FeatureSettings[TFeatureId]
-  settings[featureId] = nextFeatureSettings
-  await saveFeatureSettings(settings)
+  const storageItem = featureSettingsStorage[featureId]
+  const featureSettings = normalizeFeatureSettingMap(await storageItem.getValue(), getFeatureDefinitionById(featureId))
+  if (featureSettings[settingId] === enabled) return
+
+  await storageItem.setValue({
+    ...featureSettings,
+    [settingId]: enabled as boolean,
+  } satisfies FeatureSettingMap<TFeatureId>)
 }
 
 export const resetFeatureSettings = async () => {
-  await saveFeatureSettings(getDefaultFeatureSettings())
+  await storage.setItems(
+    featureDefinitions.map((feature) => ({
+      item: featureSettingsStorage[feature.id],
+      value: defaultFeatureSettings[feature.id],
+    }))
+  )
 }
 
 export const watchFeatureSettings = (callback: (settings: FeatureSettings) => void): (() => void) => {
-  return featureSettingsStorage.watch((newSettings) => {
-    callback(normalizeFeatureSettings(newSettings))
-  })
+  const stopWatching = featureDefinitions.map((feature) =>
+    featureSettingsStorage[feature.id].watch(async () => {
+      callback(await loadFeatureSettings())
+    })
+  )
+
+  return () => {
+    stopWatching.forEach((stop) => {
+      stop()
+    })
+  }
 }
