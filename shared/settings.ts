@@ -1,5 +1,3 @@
-import type { FeatureDefinitionById, FeatureId, FeatureSettingId } from './features'
-
 type FeatureSettingsStorageValue = Partial<Record<string, unknown>>
 
 type FeatureSettingMap<TFeatureId extends FeatureId = FeatureId> = Record<FeatureSettingId<TFeatureId>, boolean>
