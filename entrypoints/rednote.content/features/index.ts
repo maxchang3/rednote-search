@@ -7,7 +7,7 @@ type FeatureRuntimeMap = {
   [K in FeatureId]: FeatureSetup
 }
 
-export async function initFeatures(ctx: ContentScriptContext) {
+export const initFeatures = async (ctx: ContentScriptContext) => {
   initRouter(ctx)
 
   let settings = await loadFeatureSettings()

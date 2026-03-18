@@ -4,7 +4,7 @@ import icon from '@/assets/icon.svg'
 const app = document.querySelector<HTMLDivElement>('#app')
 if (!app) throw new Error('Popup root not found')
 
-function renderFeatures() {
+const renderFeatures = () => {
   return featureDefinitions
     .map(
       (feature) => `
@@ -44,13 +44,13 @@ app.innerHTML = `
 
 const toggles = Array.from(document.querySelectorAll<HTMLInputElement>('[data-feature-id]'))
 
-function getToggleFeatureId(toggle: HTMLInputElement): FeatureId | null {
+const getToggleFeatureId = (toggle: HTMLInputElement): FeatureId | null => {
   const featureId = toggle.dataset.featureId
   if (!featureId || !isFeatureId(featureId)) return null
   return featureId
 }
 
-async function syncUi() {
+const syncUI = async () => {
   const settings = await loadFeatureSettings()
   toggles.forEach((toggle) => {
     const featureId = getToggleFeatureId(toggle)
@@ -73,4 +73,4 @@ toggles.forEach((toggle) => {
   })
 })
 
-void syncUi()
+syncUI()

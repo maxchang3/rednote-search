@@ -22,6 +22,6 @@ export const featureDefinitions = [
 
 export type FeatureId = (typeof featureDefinitions)[number]['id']
 
-export function isFeatureId(value: string): value is FeatureId {
+export const isFeatureId = (value: string): value is FeatureId => {
   return featureDefinitions.some((feature) => feature.id === value)
 }

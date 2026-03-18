@@ -4,18 +4,18 @@ type RouteListener = (path: string) => void
 
 const listeners = new Set<RouteListener>()
 
-export function getCurrentPath() {
+export const getCurrentPath = () => {
   return location.pathname
 }
 
-export function onRouteChange(cb: RouteListener) {
+export const onRouteChange = (cb: RouteListener) => {
   listeners.add(cb)
   return () => {
     listeners.delete(cb)
   }
 }
 
-export function initRouter(ctx: ContentScriptContext) {
+export const initRouter = (ctx: ContentScriptContext) => {
   let currentPath = ''
 
   const emit = (nextPath: string) => {

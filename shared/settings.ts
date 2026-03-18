@@ -15,7 +15,7 @@ const getBool = (value: unknown, fallback: boolean): boolean => (typeof value ==
 const isFeatureSettingsStorageValue = (value: unknown): value is FeatureSettingsStorageValue =>
   value !== null && typeof value === 'object'
 
-export function normalizeFeatureSettings(value: unknown): FeatureSettings {
+export const normalizeFeatureSettings = (value: unknown): FeatureSettings => {
   const normalizedValue = isFeatureSettingsStorageValue(value) ? value : undefined
   return fromFeatureEntries((feature) => getBool(normalizedValue?.[feature.id], defaultFeatureSettings[feature.id]))
 }
@@ -24,21 +24,21 @@ const featureSettingsStorage = storage.defineItem<FeatureSettingsStorageValue>(F
   fallback: defaultFeatureSettings,
 })
 
-export async function loadFeatureSettings(): Promise<FeatureSettings> {
+export const loadFeatureSettings = async (): Promise<FeatureSettings> => {
   return normalizeFeatureSettings(await featureSettingsStorage.getValue())
 }
 
-async function saveFeatureSettings(settings: FeatureSettings) {
+const saveFeatureSettings = async (settings: FeatureSettings) => {
   await featureSettingsStorage.setValue(settings)
 }
 
-export async function setFeatureEnabled(featureId: FeatureId, enabled: boolean) {
+export const setFeatureEnabled = async (featureId: FeatureId, enabled: boolean) => {
   const settings = await loadFeatureSettings()
   settings[featureId] = enabled
   await saveFeatureSettings(settings)
 }
 
-export function watchFeatureSettings(callback: (settings: FeatureSettings) => void): () => void {
+export const watchFeatureSettings = (callback: (settings: FeatureSettings) => void): (() => void) => {
   return featureSettingsStorage.watch((newSettings) => {
     callback(normalizeFeatureSettings(newSettings))
   })
