@@ -61,3 +61,7 @@
 .RS_hide-sidebar-nav-notification a[href="/notification"] {
   display: none !important;
 }
+
+.RS_hide-search-suggestions .sug-box {
+  display: none !important;
+}

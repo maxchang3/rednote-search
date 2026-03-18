@@ -52,6 +52,19 @@ export const featureDefinitions = [
     ],
   },
   {
+    id: 'hideSearchSuggestions',
+    title: '隐藏「猜你想搜」',
+    description: '隐藏搜索时出现在搜索框下方的「猜你想搜」提示。',
+    settings: [
+      {
+        id: 'hideSearchSuggestionsBox',
+        title: '隐藏「猜你想搜」',
+        description: '隐藏搜索框下方的「猜你想搜」提示。',
+        defaultValue: false,
+      },
+    ],
+  },
+  {
     id: 'slashFocus',
     title: '斜杠聚焦搜索',
     description: '按下 / 时，自动聚焦到搜索框。',
