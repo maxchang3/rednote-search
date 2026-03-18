@@ -73,7 +73,7 @@ Use this minimal runtime shape:
 ```ts
 import { defineFeatureRuntime } from '../utils'
 
-export const setupExampleFeature = defineFeatureRuntime(({ isEnabled, onRouteChange, getCurrentPath }) => {
+export const setupExample = defineFeatureRuntime(({ isEnabled, onRouteChange, getCurrentPath }) => {
   const apply = () => {
     // Read current state and apply DOM changes defensively.
     const enabled = isEnabled()

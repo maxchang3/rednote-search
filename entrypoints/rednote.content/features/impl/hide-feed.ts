@@ -4,7 +4,7 @@ const toggleHideFeed = (force?: boolean) => {
   document.documentElement.classList.toggle('RS_hide-feed', force)
 }
 
-export const setupHideFeedFeature = defineFeatureRuntime(({ getCurrentPath, isEnabled, onRouteChange }) => {
+export const setupHideFeed = defineFeatureRuntime(({ getCurrentPath, isEnabled, onRouteChange }) => {
   let currentPath = getCurrentPath()
 
   const apply = () => {

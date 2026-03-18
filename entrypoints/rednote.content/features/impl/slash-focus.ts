@@ -1,6 +1,6 @@
 import { defineFeatureRuntime } from '../utils'
 
-export const setupSlashFocusFeature = defineFeatureRuntime(({ isEnabled }) => {
+export const setupSlashFocus = defineFeatureRuntime(({ isEnabled }) => {
   const onKeyDown = (event: KeyboardEvent) => {
     if (!isEnabled() || event.key !== '/') return
 
