@@ -46,6 +46,7 @@ When developing, there is no need to run `pnpm compile` or `pnpm build` after ev
 ## Coding Conventions
 
 - Follow existing TypeScript style and Biome formatting; do not introduce a second formatter.
+- Prefer implicit deduction of function return types when they are obvious from the implementation, but be explicit for exported functions or when the return type is not immediately clear.
 - Prefer small, composable functions over large imperative blocks.
 - Use descriptive names for features, settings, storage keys, and DOM selectors.
 - Keep content-script logic defensive: Xiaohongshu DOM can change without notice.
