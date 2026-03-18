@@ -47,3 +47,7 @@
     padding: 10px;
   }
 }
+
+.RS_hide-livelist-nav li:has(a[href^="/livelist"]) {
+  display: none !important;
+}

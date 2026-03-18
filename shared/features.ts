@@ -18,6 +18,12 @@ export const featureDefinitions = [
     description: '按下 / 时，自动聚焦到搜索框。',
     defaultValue: true,
   },
+  {
+    id: 'hideLivelistNav',
+    title: '隐藏直播入口',
+    description: '隐藏导航栏中的直播按钮。',
+    defaultValue: false,
+  },
 ] as const satisfies readonly FeatureDefinition[]
 
 export type FeatureId = (typeof featureDefinitions)[number]['id']

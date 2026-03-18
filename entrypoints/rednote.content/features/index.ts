@@ -1,5 +1,5 @@
 import type { ContentScriptContext } from 'wxt/utils/content-script-context'
-import { setupHideFeedFeature, setupSlashFocusFeature } from './impl'
+import { setupHideFeedFeature, setupHideLivelistNavFeature, setupSlashFocusFeature } from './impl'
 import { getCurrentPath, initRouter, onRouteChange } from './router'
 import type { FeatureContext, FeatureSetup } from './types'
 
@@ -19,6 +19,7 @@ export const initFeatures = async (ctx: ContentScriptContext) => {
 
   const runtimeFeatures = {
     hideFeed: setupHideFeedFeature,
+    hideLivelistNav: setupHideLivelistNavFeature,
     slashFocus: setupSlashFocusFeature,
   } satisfies FeatureRuntimeMap
 
