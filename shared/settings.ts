@@ -1,7 +1,17 @@
-type FeatureSettingsStorageValue = Partial<Record<string, unknown>>
-type FeatureSettingMap = Record<string, boolean>
+import type { FeatureId, FeatureSettingId } from './features'
 
-export type FeatureSettings = Record<FeatureId, FeatureSettingMap>
+type FeatureSettingsStorageValue = Partial<Record<string, unknown>>
+
+type FeatureSettingMap<TFeatureId extends FeatureId = FeatureId> = Record<FeatureSettingId<TFeatureId>, boolean>
+
+type FeatureDefinition<TFeatureId extends FeatureId = FeatureId> = Extract<
+  (typeof featureDefinitions)[number],
+  { id: TFeatureId }
+>
+
+export type FeatureSettings = {
+  [K in FeatureId]: FeatureSettingMap<K>
+}
 
 const FEATURE_STORAGE_KEY = 'local:feature-settings'
 
@@ -17,22 +27,25 @@ const getBool = (value: unknown, fallback: boolean): boolean => (typeof value ==
 const isFeatureSettingsStorageValue = (value: unknown): value is FeatureSettingsStorageValue =>
   value !== null && typeof value === 'object'
 
-const normalizeFeatureSettingMap = (
+const normalizeFeatureSettingMap = <TFeatureId extends FeatureId>(
   normalizedValue: FeatureSettingsStorageValue | undefined,
-  feature: (typeof featureDefinitions)[number]
-) =>
-  Object.fromEntries(
+  feature: FeatureDefinition<TFeatureId>
+) => {
+  const defaultSettings = defaultFeatureSettings[feature.id] as Record<string, boolean>
+
+  return Object.fromEntries(
     feature.settings.map((setting) => {
       const rawFeatureValue = normalizedValue?.[feature.id]
       const rawSettingValue =
         rawFeatureValue !== null && typeof rawFeatureValue === 'object'
           ? (rawFeatureValue as Record<string, unknown>)[setting.id]
           : undefined
-      const fallbackValue = defaultFeatureSettings[feature.id][setting.id]
+      const fallbackValue = defaultSettings[setting.id]
 
       return [setting.id, getBool(rawSettingValue, fallbackValue)]
     })
-  ) as FeatureSettingMap
+  ) as FeatureSettingMap<TFeatureId>
+}
 
 export const normalizeFeatureSettings = (value: unknown): FeatureSettings => {
   const normalizedValue = isFeatureSettingsStorageValue(value) ? value : undefined
@@ -57,12 +70,17 @@ export const getDefaultFeatureSettings = (): FeatureSettings => {
   return normalizeFeatureSettings(defaultFeatureSettings)
 }
 
-export const setFeatureSetting = async (featureId: FeatureId, settingId: string, enabled: boolean) => {
+export const setFeatureSetting = async <TFeatureId extends FeatureId>(
+  featureId: TFeatureId,
+  settingId: FeatureSettingId<TFeatureId>,
+  enabled: boolean
+) => {
   const settings = await loadFeatureSettings()
-  settings[featureId] = {
+  const nextFeatureSettings = {
     ...settings[featureId],
     [settingId]: enabled,
-  }
+  } as FeatureSettings[TFeatureId]
+  settings[featureId] = nextFeatureSettings
   await saveFeatureSettings(settings)
 }
 

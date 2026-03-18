@@ -13,7 +13,7 @@ const toggleSidebarNavSetting = (settingId: SidebarNavSettingId, force?: boolean
   document.documentElement.classList.toggle(sidebarNavClassMap[settingId], force)
 }
 
-export const setupHideSidebarNav = defineFeatureRuntime(({ getSetting }) => {
+export const setupHideSidebarNav = defineFeatureRuntime<'hideSidebarNav'>(({ getSetting }) => {
   const apply = () => {
     toggleSidebarNavSetting('livelist', getSetting('livelist'))
     toggleSidebarNavSetting('publish', getSetting('publish'))

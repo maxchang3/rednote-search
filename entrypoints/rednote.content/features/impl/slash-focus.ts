@@ -1,6 +1,6 @@
 import { defineFeatureRuntime } from '../utils'
 
-export const setupSlashFocus = defineFeatureRuntime(({ getSetting }) => {
+export const setupSlashFocus = defineFeatureRuntime<'slashFocus'>(({ getSetting }) => {
   const onKeyDown = (event: KeyboardEvent) => {
     if (!getSetting('focusSearchOnSlash') || event.key !== '/') return
 

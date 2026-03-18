@@ -1,3 +1,6 @@
-import type { FeatureContext, FeatureRuntime, FeatureSetup } from './types'
+import type { FeatureId } from '@/shared/features'
+import type { FeatureSetup } from './types'
 
-export const defineFeatureRuntime = (setup: (ctx: FeatureContext) => FeatureRuntime): FeatureSetup => setup
+export const defineFeatureRuntime = <TFeatureId extends FeatureId>(
+  setup: FeatureSetup<TFeatureId>
+): FeatureSetup<TFeatureId> => setup

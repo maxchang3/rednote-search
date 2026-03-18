@@ -3,13 +3,10 @@ export type FeatureRuntime = {
   dispose: () => void
 }
 
-type BaseFeatureContext = {
+export type FeatureContext<TFeatureId extends FeatureId = FeatureId> = {
   getCurrentPath: () => string
   onRouteChange: (cb: (path: string) => void) => () => void
+  getSetting: (settingId: FeatureSettingId<TFeatureId>) => boolean
 }
 
-export type FeatureContext = BaseFeatureContext & {
-  getSetting: (settingId: string) => boolean
-}
-
-export type FeatureSetup = (ctx: FeatureContext) => FeatureRuntime
+export type FeatureSetup<TFeatureId extends FeatureId = FeatureId> = (ctx: FeatureContext<TFeatureId>) => FeatureRuntime

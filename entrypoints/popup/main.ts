@@ -95,12 +95,32 @@ const setResetButtonState = (state: keyof typeof resetButtonLabels) => {
   resetButton.dataset.state = state
 }
 
-const getToggleMeta = (toggle: HTMLInputElement): { featureId: FeatureId; settingId: string } | null => {
+type ToggleMeta = {
+  [K in FeatureId]: {
+    featureId: K
+    settingId: FeatureSettingId<K>
+  }
+}[FeatureId]
+
+const getToggleMeta = (toggle: HTMLInputElement): ToggleMeta | null => {
   const featureId = toggle.dataset.featureId
   const settingId = toggle.dataset.settingId
   if (!featureId || !isFeatureId(featureId) || !settingId || !isFeatureSettingId(featureId, settingId)) return null
-  return { featureId, settingId }
+  return { featureId, settingId } as ToggleMeta
 }
+
+const getSettingValue = <TFeatureId extends FeatureId>(
+  settings: Awaited<ReturnType<typeof loadFeatureSettings>>,
+  toggleMeta: { featureId: TFeatureId; settingId: FeatureSettingId<TFeatureId> }
+) => {
+  const featureSettings = settings[toggleMeta.featureId] as Record<FeatureSettingId<TFeatureId>, boolean>
+  return featureSettings[toggleMeta.settingId]
+}
+
+const updateSetting = <TFeatureId extends FeatureId>(
+  toggleMeta: { featureId: TFeatureId; settingId: FeatureSettingId<TFeatureId> },
+  enabled: boolean
+) => setFeatureSetting(toggleMeta.featureId, toggleMeta.settingId, enabled)
 
 const syncUI = async () => {
   const settings = await loadFeatureSettings()
@@ -108,7 +128,7 @@ const syncUI = async () => {
     const toggleMeta = getToggleMeta(toggle)
     if (!toggleMeta) return
 
-    toggle.checked = Boolean((settings[toggleMeta.featureId] as Record<string, boolean>)[toggleMeta.settingId])
+    toggle.checked = getSettingValue(settings, toggleMeta)
   })
 }
 
@@ -119,7 +139,7 @@ toggles.forEach((toggle) => {
 
     toggle.disabled = true
     try {
-      await setFeatureSetting(toggleMeta.featureId, toggleMeta.settingId, toggle.checked)
+      await updateSetting(toggleMeta, toggle.checked)
     } finally {
       toggle.disabled = false
     }
