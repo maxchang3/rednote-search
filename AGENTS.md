@@ -100,6 +100,8 @@ Feature runtimes should be defensive against missing DOM nodes, keep cleanup ins
 
 Before wrapping up, make sure the changed files pass the most relevant checks and that any skipped verification is called out explicitly.
 
+Follow the conventional commit format for the commit message, with a clear description of the change and its motivation if not obvious.
+
 ## References
 
 - WXT docs: https://wxt.dev/llms.txt
