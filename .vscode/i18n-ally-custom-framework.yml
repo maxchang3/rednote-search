@@ -7,6 +7,7 @@ languageIds:
 # Look for t("...")
 usageMatchRegex:
   - "[^\\w\\d]t\\(['\"`]({key})['\"`]"
+  - "\\b(?:title|description)\\s*:\\s*['\"`]({key})['\"`]\\s*,?\\s*//\\s*"
 
 # Disable other built-in i18n ally frameworks
 monopoly: true
