@@ -8,20 +8,20 @@ const renderFeatures = () => {
   return featureDefinitions
     .map(
       (feature) => `
-        <label class="feature-card">
+        <div class="feature-card">
           <span class="feature-copy">
             <span class="feature-title">${feature.title}</span>
             <span class="feature-description">${feature.description}</span>
           </span>
-          <span class="feature-switch">
+          <label class="feature-switch">
             <input
               class="feature-toggle"
               type="checkbox"
               data-feature-id="${feature.id}"
             />
             <span class="feature-slider" aria-hidden="true"></span>
-          </span>
-        </label>
+          </label>
+        </div>
       `
     )
     .join('')
