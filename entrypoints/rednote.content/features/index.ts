@@ -1,6 +1,12 @@
 import type { ContentScriptContext } from 'wxt/utils/content-script-context'
 import type { FeatureSettings } from '@/shared/settings'
-import { setupHideFeed, setupHideSearchSuggestions, setupHideSidebarNav, setupSlashFocus } from './impl'
+import {
+  setupHideFeed,
+  setupHideNotificationBadge,
+  setupHideSearchSuggestions,
+  setupHideSidebarNav,
+  setupSlashFocus,
+} from './impl'
 import { getCurrentPath, initRouter, onRouteChange } from './router'
 import type { FeatureContext, FeatureRuntime, FeatureSetup } from './types'
 
@@ -20,6 +26,7 @@ export const initFeatures = async (ctx: ContentScriptContext) => {
 
   const runtimeFeatures = {
     hideFeed: setupHideFeed,
+    hideNotificationBadge: setupHideNotificationBadge,
     hideSearchSuggestions: setupHideSearchSuggestions,
     hideSidebarNav: setupHideSidebarNav,
     slashFocus: setupSlashFocus,

@@ -43,6 +43,15 @@ export const featureDefinitions = [
     },
   },
   {
+    id: 'hideNotificationBadge',
+    title: '隐藏通知小红点',
+    description: '隐藏通知按钮上的未读小红点。',
+    setting: {
+      id: 'hideNotificationBadgeCount',
+      defaultValue: false,
+    },
+  },
+  {
     id: 'slashFocus',
     title: '斜杠聚焦搜索',
     description: '按下 / 时，自动聚焦到搜索框。',

@@ -65,3 +65,7 @@
 .RS_hide-search-suggestions .sug-box:has(.header) {
   display: none !important;
 }
+
+.RS_hide-notification-badge .badge-container .count {
+  display: none !important;
+}
