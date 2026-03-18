@@ -1,7 +1,7 @@
 import './style.css'
 import icon from '@/assets/icon.svg'
 import { featureDefinitions, isFeatureId, isFeatureSettingId } from '@/shared/features'
-import { loadFeatureSettings, setFeatureSetting } from '@/shared/settings'
+import { loadFeatureSettings, resetFeatureSettings, setFeatureSetting } from '@/shared/settings'
 
 const app = document.querySelector<HTMLDivElement>('#app')
 if (!app) throw new Error('Popup root not found')
@@ -74,10 +74,26 @@ app.innerHTML = `
     <section class="feature-list">
       ${renderFeatures()}
     </section>
+    <footer class="popup-footer">
+      <button type="button" class="reset-button" data-reset-settings>重置配置</button>
+    </footer>
   </main>
 `
 
 const toggles = Array.from(document.querySelectorAll<HTMLInputElement>('[data-feature-id]'))
+const resetButton = document.querySelector<HTMLButtonElement>('[data-reset-settings]')
+const resetButtonLabels = {
+  idle: '重置配置',
+  pending: '重置中...',
+  success: '已重置',
+} as const
+let resetFeedbackTimer: number | null = null
+
+const setResetButtonState = (state: keyof typeof resetButtonLabels) => {
+  if (!resetButton) return
+  resetButton.textContent = resetButtonLabels[state]
+  resetButton.dataset.state = state
+}
 
 const getToggleMeta = (toggle: HTMLInputElement): { featureId: FeatureId; settingId: string } | null => {
   const featureId = toggle.dataset.featureId
@@ -110,4 +126,33 @@ toggles.forEach((toggle) => {
   })
 })
 
+resetButton?.addEventListener('click', async () => {
+  if (resetFeedbackTimer !== null) {
+    window.clearTimeout(resetFeedbackTimer)
+    resetFeedbackTimer = null
+  }
+
+  setResetButtonState('pending')
+  resetButton.disabled = true
+  toggles.forEach((toggle) => {
+    toggle.disabled = true
+  })
+
+  try {
+    await resetFeatureSettings()
+    await syncUI()
+    setResetButtonState('success')
+    resetFeedbackTimer = window.setTimeout(() => {
+      setResetButtonState('idle')
+      resetFeedbackTimer = null
+    }, 1200)
+  } finally {
+    toggles.forEach((toggle) => {
+      toggle.disabled = false
+    })
+    resetButton.disabled = false
+  }
+})
+
+setResetButtonState('idle')
 syncUI()

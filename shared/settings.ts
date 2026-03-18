@@ -53,6 +53,10 @@ const saveFeatureSettings = async (settings: FeatureSettings) => {
   await featureSettingsStorage.setValue(settings)
 }
 
+export const getDefaultFeatureSettings = (): FeatureSettings => {
+  return normalizeFeatureSettings(defaultFeatureSettings)
+}
+
 export const setFeatureSetting = async (featureId: FeatureId, settingId: string, enabled: boolean) => {
   const settings = await loadFeatureSettings()
   settings[featureId] = {
@@ -60,6 +64,10 @@ export const setFeatureSetting = async (featureId: FeatureId, settingId: string,
     [settingId]: enabled,
   }
   await saveFeatureSettings(settings)
+}
+
+export const resetFeatureSettings = async () => {
+  await saveFeatureSettings(getDefaultFeatureSettings())
 }
 
 export const watchFeatureSettings = (callback: (settings: FeatureSettings) => void): (() => void) => {

@@ -27,19 +27,6 @@ export const featureDefinitions = [
     ],
   },
   {
-    id: 'slashFocus',
-    title: '斜杠聚焦搜索',
-    description: '按下 / 时，自动聚焦到搜索框。',
-    settings: [
-      {
-        id: 'focusSearchOnSlash',
-        title: '按 / 聚焦搜索',
-        description: '按下 / 时，自动聚焦到搜索框。',
-        defaultValue: true,
-      },
-    ],
-  },
-  {
     id: 'hideSidebarNav',
     title: '隐藏侧边导航按钮',
     description: '隐藏侧边导航栏中的直播、发布和通知按钮。',
@@ -61,6 +48,19 @@ export const featureDefinitions = [
         title: '通知',
         description: '隐藏导航栏中的通知按钮。',
         defaultValue: false,
+      },
+    ],
+  },
+  {
+    id: 'slashFocus',
+    title: '斜杠聚焦搜索',
+    description: '按下 / 时，自动聚焦到搜索框。',
+    settings: [
+      {
+        id: 'focusSearchOnSlash',
+        title: '按 / 聚焦搜索',
+        description: '按下 / 时，自动聚焦到搜索框。',
+        defaultValue: true,
       },
     ],
   },
