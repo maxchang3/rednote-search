@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@wxt-dev/i18n':
+        specifier: ^0.2.5
+        version: 0.2.5(wxt@0.20.18(@types/node@25.3.5)(jiti@2.6.1)(rollup@4.59.0))
     devDependencies:
       '@biomejs/biome':
         specifier: ^2.4.6
@@ -669,6 +673,14 @@ packages:
 
   '@wxt-dev/browser@0.1.37':
     resolution: {integrity: sha512-I32XWCNRy2W6UgbaVXz8BHGBGtm8urGRRBrcNLagUBXTrBi7wCE6zWePUvvK+nUl7qUCZ7iQ1ufdP0c1DEWisw==}
+
+  '@wxt-dev/i18n@0.2.5':
+    resolution: {integrity: sha512-B9EwzR7eTIZv5HQSsQL9/NaBHXH7G/esEtxMCoBMQyHx6QWWJNMJLX2C4z8slQUbblvlt4bPa+/zIC1IrWc1LA==}
+    peerDependencies:
+      wxt: '>=0.19.7'
+    peerDependenciesMeta:
+      wxt:
+        optional: true
 
   '@wxt-dev/storage@1.2.8':
     resolution: {integrity: sha512-GWCFKgF5+d7eslOxUDFC70ypA9njupmJb1nQM8uZoX0J3sWT2BO5xJLzb1sYahWAfID9p2BMtnUBN1lkWxPsbQ==}
@@ -2387,6 +2399,15 @@ snapshots:
     dependencies:
       '@types/filesystem': 0.0.36
       '@types/har-format': 1.2.16
+
+  '@wxt-dev/i18n@0.2.5(wxt@0.20.18(@types/node@25.3.5)(jiti@2.6.1)(rollup@4.59.0))':
+    dependencies:
+      '@wxt-dev/browser': 0.1.37
+      chokidar: 5.0.0
+      confbox: 0.2.4
+      fast-glob: 3.3.3
+    optionalDependencies:
+      wxt: 0.20.18(@types/node@25.3.5)(jiti@2.6.1)(rollup@4.59.0)
 
   '@wxt-dev/storage@1.2.8':
     dependencies:

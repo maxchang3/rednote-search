@@ -1,8 +1,8 @@
 export const featureDefinitions = [
   {
     id: 'hideFeed',
-    title: '隐藏首页信息流',
-    description: '隐藏主页信息流，搜索框页面居中。',
+    title: 'features.hideFeed.title',
+    description: 'features.hideFeed.description',
     setting: {
       id: 'hideExploreFeed',
       defaultValue: true,
@@ -10,33 +10,33 @@ export const featureDefinitions = [
   },
   {
     id: 'hideSidebarNav',
-    title: '隐藏侧边导航按钮',
-    description: '隐藏侧边导航栏中的直播、发布和通知按钮。',
+    title: 'features.hideSidebarNav.title',
+    description: 'features.hideSidebarNav.description',
     settings: [
       {
         id: 'livelist',
-        title: '直播',
-        description: '隐藏导航栏中的直播按钮。',
+        title: 'features.hideSidebarNav.settings.livelist.title',
+        description: 'features.hideSidebarNav.settings.livelist.description',
         defaultValue: true,
       },
       {
         id: 'publish',
-        title: '发布',
-        description: '隐藏导航栏中的发布按钮。',
+        title: 'features.hideSidebarNav.settings.publish.title',
+        description: 'features.hideSidebarNav.settings.publish.description',
         defaultValue: false,
       },
       {
         id: 'notification',
-        title: '通知',
-        description: '隐藏导航栏中的通知按钮。',
+        title: 'features.hideSidebarNav.settings.notification.title',
+        description: 'features.hideSidebarNav.settings.notification.description',
         defaultValue: false,
       },
     ],
   },
   {
     id: 'hideSearchSuggestions',
-    title: '隐藏「猜你想搜」',
-    description: '隐藏搜索框下方的「猜你想搜」提示。',
+    title: 'features.hideSearchSuggestions.title',
+    description: 'features.hideSearchSuggestions.description',
     setting: {
       id: 'hideSearchSuggestionsBox',
       defaultValue: true,
@@ -44,8 +44,8 @@ export const featureDefinitions = [
   },
   {
     id: 'hideNotificationBadge',
-    title: '隐藏通知小红点',
-    description: '隐藏通知按钮上的未读小红点。',
+    title: 'features.hideNotificationBadge.title',
+    description: 'features.hideNotificationBadge.description',
     setting: {
       id: 'hideNotificationBadgeCount',
       defaultValue: false,
@@ -53,8 +53,8 @@ export const featureDefinitions = [
   },
   {
     id: 'slashFocus',
-    title: '斜杠聚焦搜索',
-    description: '按下 / 时，自动聚焦到搜索框。',
+    title: 'features.slashFocus.title',
+    description: 'features.slashFocus.description',
     setting: {
       id: 'focusSearchOnSlash',
       defaultValue: true,

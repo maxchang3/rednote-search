@@ -1,0 +1,49 @@
+{
+  "extName": "小紅搜",
+  "extDescription": "讓小紅書更像一個專注搜尋的工具。",
+  "popup": {
+    "title": "小紅搜",
+    "pageTitle": "小紅搜設定",
+    "reset": {
+      "idle": "重設設定",
+      "pending": "重設中...",
+      "success": "已重設"
+    }
+  },
+  "features": {
+    "hideFeed": {
+      "title": "隱藏首頁資訊流",
+      "description": "隱藏首頁資訊流，讓搜尋框頁面置中。"
+    },
+    "hideSidebarNav": {
+      "title": "隱藏側邊導覽按鈕",
+      "description": "隱藏側邊導覽列中的按鈕。",
+      "settings": {
+        "livelist": {
+          "title": "直播",
+          "description": "隱藏導覽列中的直播按鈕。"
+        },
+        "publish": {
+          "title": "發布",
+          "description": "隱藏導覽列中的發布按鈕。"
+        },
+        "notification": {
+          "title": "通知",
+          "description": "隱藏導覽列中的通知按鈕。"
+        }
+      }
+    },
+    "hideSearchSuggestions": {
+      "title": "隱藏「猜你想搜」",
+      "description": "隱藏搜尋框下方的「猜你想搜」提示。"
+    },
+    "hideNotificationBadge": {
+      "title": "隱藏通知小紅點",
+      "description": "隱藏通知按鈕上的未讀小紅點。"
+    },
+    "slashFocus": {
+      "title": "斜線聚焦搜尋",
+      "description": "按下 / 時，自動聚焦到搜尋框。"
+    }
+  }
+}

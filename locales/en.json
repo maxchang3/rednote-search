@@ -1,0 +1,49 @@
+{
+  "extName": "RedNote Search",
+  "extDescription": "Turn RedNote into search-first.",
+  "popup": {
+    "title": "RedNote Search",
+    "pageTitle": "RedNote Search Settings",
+    "reset": {
+      "idle": "Reset settings",
+      "pending": "Resetting...",
+      "success": "Reset"
+    }
+  },
+  "features": {
+    "hideFeed": {
+      "title": "Hide home feed",
+      "description": "Hide the home feed and center the search view."
+    },
+    "hideSidebarNav": {
+      "title": "Hide sidebar buttons",
+      "description": "Hide buttons in the sidebar.",
+      "settings": {
+        "livelist": {
+          "title": "Live Stream",
+          "description": "Hide the Live Stream button in the sidebar."
+        },
+        "publish": {
+          "title": "Creator",
+          "description": "Hide the Creator button in the sidebar."
+        },
+        "notification": {
+          "title": "Notifications",
+          "description": "Hide the Notifications button in the sidebar."
+        }
+      }
+    },
+    "hideSearchSuggestions": {
+      "title": "Hide suggested searches",
+      "description": "Hide the suggested searches."
+    },
+    "hideNotificationBadge": {
+      "title": "Hide notification badge",
+      "description": "Hide the unread badge."
+    },
+    "slashFocus": {
+      "title": "Focus search with slash",
+      "description": "Press / to focus the search box automatically."
+    }
+  }
+}

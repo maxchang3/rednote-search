@@ -1,0 +1,49 @@
+{
+  "extName": "小红搜",
+  "extDescription": "让小红书更像一个专注搜索的工具。",
+  "popup": {
+    "title": "小红搜",
+    "pageTitle": "小红搜设置",
+    "reset": {
+      "idle": "重置配置",
+      "pending": "重置中...",
+      "success": "已重置"
+    }
+  },
+  "features": {
+    "hideFeed": {
+      "title": "隐藏首页信息流",
+      "description": "隐藏主页信息流，搜索框页面居中。"
+    },
+    "hideSidebarNav": {
+      "title": "隐藏侧边导航按钮",
+      "description": "隐藏侧边导航栏中的按钮。",
+      "settings": {
+        "livelist": {
+          "title": "直播",
+          "description": "隐藏导航栏中的直播按钮。"
+        },
+        "publish": {
+          "title": "发布",
+          "description": "隐藏导航栏中的发布按钮。"
+        },
+        "notification": {
+          "title": "通知",
+          "description": "隐藏导航栏中的通知按钮。"
+        }
+      }
+    },
+    "hideSearchSuggestions": {
+      "title": "隐藏「猜你想搜」",
+      "description": "隐藏搜索框下方的「猜你想搜」提示。"
+    },
+    "hideNotificationBadge": {
+      "title": "隐藏通知小红点",
+      "description": "隐藏通知按钮上的未读小红点。"
+    },
+    "slashFocus": {
+      "title": "斜杠聚焦搜索",
+      "description": "按下 / 时，自动聚焦到搜索框。"
+    }
+  }
+}

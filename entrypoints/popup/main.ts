@@ -1,7 +1,10 @@
 import './style.css'
+import { i18n } from '#i18n'
 
 const app = document.querySelector<HTMLDivElement>('#app')
 if (!app) throw new Error('Popup root not found')
+
+document.title = i18n.t('popup.pageTitle')
 
 const renderSettingToggle = (featureId: FeatureId, settingId: string) => `
   <label class="feature-switch">
@@ -24,8 +27,8 @@ const renderFeatures = () => {
         return `
           <div class="feature-card">
             <span class="feature-copy">
-              <span class="feature-title">${feature.title}</span>
-              <span class="feature-description">${feature.description}</span>
+              <span class="feature-title">${i18n.t(feature.title)}</span>
+              <span class="feature-description">${i18n.t(feature.description)}</span>
             </span>
             ${renderSettingToggle(feature.id, setting.id)}
           </div>
@@ -35,8 +38,8 @@ const renderFeatures = () => {
       return `
         <div class="feature-card feature-card-group">
           <span class="feature-copy">
-            <span class="feature-title">${feature.title}</span>
-            <span class="feature-description">${feature.description}</span>
+            <span class="feature-title">${i18n.t(feature.title)}</span>
+            <span class="feature-description">${i18n.t(feature.description)}</span>
           </span>
           <div class="feature-group-list">
             ${feature.settings
@@ -44,8 +47,8 @@ const renderFeatures = () => {
                 (setting) => `
                   <div class="feature-group-row">
                     <span class="feature-group-copy">
-                      <span class="feature-group-title">${setting.title}</span>
-                      <span class="feature-group-description">${setting.description}</span>
+                      <span class="feature-group-title">${i18n.t(setting.title)}</span>
+                      <span class="feature-group-description">${i18n.t(setting.description)}</span>
                     </span>
                     ${renderSettingToggle(feature.id, setting.id)}
                   </div>
@@ -62,8 +65,8 @@ const renderFeatures = () => {
 app.innerHTML = `
   <main class="popup-shell">
     <header class="popup-header">
-      <h1>小红搜</h1>
-      <button type="button" class="reset-button" data-reset-settings>重置配置</button>
+      <h1>${i18n.t('popup.title')}</h1>
+      <button type="button" class="reset-button" data-reset-settings>${i18n.t('popup.reset.idle')}</button>
     </header>
     <section class="feature-list">
       ${renderFeatures()}
@@ -74,9 +77,9 @@ app.innerHTML = `
 const toggles = Array.from(document.querySelectorAll<HTMLInputElement>('[data-feature-id]'))
 const resetButton = document.querySelector<HTMLButtonElement>('[data-reset-settings]')
 const resetButtonLabels = {
-  idle: '重置配置',
-  pending: '重置中...',
-  success: '已重置',
+  idle: i18n.t('popup.reset.idle'),
+  pending: i18n.t('popup.reset.pending'),
+  success: i18n.t('popup.reset.success'),
 } as const
 let resetFeedbackTimer: number | null = null
 

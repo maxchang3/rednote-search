@@ -1,8 +1,8 @@
 {
-  "name": "wxt-starter",
-  "description": "manifest.json description",
-  "private": true,
+  "name": "rednote-search",
   "version": "0.0.0",
+  "private": true,
+  "description": "Turn RedNote into search-first.",
   "type": "module",
   "scripts": {
     "dev": "wxt",
@@ -17,6 +17,9 @@
     "lint:fix": "biome check --write .",
     "prepare": "simple-git-hooks",
     "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@wxt-dev/i18n": "^0.2.5"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.6",
