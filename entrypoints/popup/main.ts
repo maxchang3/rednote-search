@@ -1,7 +1,5 @@
 import './style.css'
 import icon from '@/assets/icon.svg'
-import { featureDefinitions, isFeatureId, isFeatureSettingId } from '@/shared/features'
-import { loadFeatureSettings, resetFeatureSettings, setFeatureSetting } from '@/shared/settings'
 
 const app = document.querySelector<HTMLDivElement>('#app')
 if (!app) throw new Error('Popup root not found')

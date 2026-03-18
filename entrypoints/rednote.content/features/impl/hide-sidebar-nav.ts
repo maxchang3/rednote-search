@@ -1,4 +1,3 @@
-import type { FeatureSettingId } from '@/shared/features'
 import { defineFeatureRuntime } from '../utils'
 
 type SidebarNavSettingId = FeatureSettingId<'hideSidebarNav'>
