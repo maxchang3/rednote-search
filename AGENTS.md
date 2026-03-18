@@ -58,6 +58,44 @@ When developing, there is no need to run `pnpm compile` or `pnpm build` after ev
 - Keep feature flags, defaults, and labels consistent between `shared/` definitions and content-script implementations.
 - If a change affects user-facing behavior, update `README.md` when the existing description becomes inaccurate.
 
+## Add new feature
+
+When adding a new feature, keep the flow small and consistent:
+
+1. Add the feature metadata to `shared/features.ts` with `id`, `title`, `description`, and `defaultValue`.
+2. Create the runtime in `entrypoints/rednote.content/features/impl/<feature-name>.ts`.
+3. Export it from `entrypoints/rednote.content/features/impl/index.ts`.
+4. Register it in the `runtimeFeatures` map inside `entrypoints/rednote.content/features/index.ts`.
+5. If the feature changes what users see or how they use the extension, update `README.md`.
+
+Use this minimal runtime shape:
+
+```ts
+import { defineFeatureRuntime } from '../utils'
+
+export const setupExampleFeature = defineFeatureRuntime(({ isEnabled, onRouteChange, getCurrentPath }) => {
+  const apply = () => {
+    // Read current state and apply DOM changes defensively.
+    const enabled = isEnabled()
+    const path = getCurrentPath()
+  }
+
+  const stopListening = onRouteChange(() => {
+    apply()
+  })
+
+  return {
+    refresh: apply,
+    dispose: () => {
+      stopListening()
+      // Undo any DOM side effects here.
+    },
+  }
+})
+```
+
+Feature runtimes should be defensive against missing DOM nodes, keep cleanup inside `dispose()`, and make `refresh()` safe to call repeatedly.
+
 ## Commit Readiness
 
 Before wrapping up, make sure the changed files pass the most relevant checks and that any skipped verification is called out explicitly.
