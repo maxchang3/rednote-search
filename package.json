@@ -15,7 +15,8 @@
     "postinstall": "wxt prepare",
     "lint": "biome check",
     "lint:fix": "biome check --write .",
-    "prepare": "simple-git-hooks"
+    "prepare": "simple-git-hooks",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.6",

@@ -12,7 +12,10 @@ export default defineConfig({
   autoIcons: {
     baseIconPath: 'assets/icon.svg',
   },
+  imports: {
+    dirs: ['./shared/*'],
+  },
   webExt: {
     chromiumArgs: ['--user-data-dir=./.wxt/chrome-data'],
-  }
+  },
 })
