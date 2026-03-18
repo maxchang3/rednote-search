@@ -66,26 +66,27 @@ export const featureDefinitions = [
   },
 ] as const satisfies readonly FeatureDefinition[]
 
-export type FeatureId = (typeof featureDefinitions)[number]['id']
-export type FeatureSettingId<TFeatureId extends FeatureId = FeatureId> = Extract<
-  (typeof featureDefinitions)[number],
+type FeatureDefinitionItem = (typeof featureDefinitions)[number]
+
+export type FeatureId = FeatureDefinitionItem['id']
+export type FeatureDefinitionById<TFeatureId extends FeatureId = FeatureId> = Extract<
+  FeatureDefinitionItem,
   { id: TFeatureId }
->['settings'][number]['id']
+>
+export type FeatureSettingId<TFeatureId extends FeatureId = FeatureId> =
+  FeatureDefinitionById<TFeatureId>['settings'][number]['id']
 
 export const isFeatureId = (value: string): value is FeatureId => {
   return featureDefinitions.some((feature) => feature.id === value)
-}
-
-export const getFeatureDefinition = <TFeatureId extends FeatureId>(featureId: TFeatureId) => {
-  return featureDefinitions.find((feature) => feature.id === featureId) as Extract<
-    (typeof featureDefinitions)[number],
-    { id: TFeatureId }
-  >
 }
 
 export const isFeatureSettingId = <TFeatureId extends FeatureId>(
   featureId: TFeatureId,
   value: string
 ): value is FeatureSettingId<TFeatureId> => {
-  return getFeatureDefinition(featureId).settings.some((setting) => setting.id === value)
+  const feature = featureDefinitions.find(
+    (feature): feature is FeatureDefinitionById<TFeatureId> => feature.id === featureId
+  )
+
+  return feature?.settings.some((setting) => setting.id === value) ?? false
 }

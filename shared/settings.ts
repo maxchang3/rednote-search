@@ -1,15 +1,10 @@
-import type { FeatureId, FeatureSettingId } from './features'
+import type { FeatureDefinitionById, FeatureId, FeatureSettingId } from './features'
 
 type FeatureSettingsStorageValue = Partial<Record<string, unknown>>
 
 type FeatureSettingMap<TFeatureId extends FeatureId = FeatureId> = Record<FeatureSettingId<TFeatureId>, boolean>
 
-type FeatureDefinition<TFeatureId extends FeatureId = FeatureId> = Extract<
-  (typeof featureDefinitions)[number],
-  { id: TFeatureId }
->
-
-export type FeatureSettings = {
+type FeatureSettings = {
   [K in FeatureId]: FeatureSettingMap<K>
 }
 
@@ -29,7 +24,7 @@ const isFeatureSettingsStorageValue = (value: unknown): value is FeatureSettings
 
 const normalizeFeatureSettingMap = <TFeatureId extends FeatureId>(
   normalizedValue: FeatureSettingsStorageValue | undefined,
-  feature: FeatureDefinition<TFeatureId>
+  feature: FeatureDefinitionById<TFeatureId>
 ) => {
   const defaultSettings = defaultFeatureSettings[feature.id] as Record<string, boolean>
 
@@ -47,7 +42,7 @@ const normalizeFeatureSettingMap = <TFeatureId extends FeatureId>(
   ) as FeatureSettingMap<TFeatureId>
 }
 
-export const normalizeFeatureSettings = (value: unknown): FeatureSettings => {
+const normalizeFeatureSettings = (value: unknown): FeatureSettings => {
   const normalizedValue = isFeatureSettingsStorageValue(value) ? value : undefined
   return Object.fromEntries(
     featureDefinitions.map((feature) => [feature.id, normalizeFeatureSettingMap(normalizedValue, feature)])
@@ -66,7 +61,7 @@ const saveFeatureSettings = async (settings: FeatureSettings) => {
   await featureSettingsStorage.setValue(settings)
 }
 
-export const getDefaultFeatureSettings = (): FeatureSettings => {
+const getDefaultFeatureSettings = (): FeatureSettings => {
   return normalizeFeatureSettings(defaultFeatureSettings)
 }
 
