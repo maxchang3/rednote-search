@@ -1,3 +1,3 @@
 export * from './hide-feed'
-export * from './hide-livelist-nav'
+export * from './hide-sidebar-nav'
 export * from './slash-focus'

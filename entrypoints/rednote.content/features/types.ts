@@ -9,7 +9,7 @@ type BaseFeatureContext = {
 }
 
 export type FeatureContext = BaseFeatureContext & {
-  isEnabled: () => boolean
+  getSetting: (settingId: string) => boolean
 }
 
 export type FeatureSetup = (ctx: FeatureContext) => FeatureRuntime

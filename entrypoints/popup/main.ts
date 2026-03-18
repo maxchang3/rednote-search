@@ -1,29 +1,64 @@
 import './style.css'
 import icon from '@/assets/icon.svg'
+import { featureDefinitions, isFeatureId, isFeatureSettingId } from '@/shared/features'
+import { loadFeatureSettings, setFeatureSetting } from '@/shared/settings'
 
 const app = document.querySelector<HTMLDivElement>('#app')
 if (!app) throw new Error('Popup root not found')
 
+const renderSettingToggle = (featureId: FeatureId, settingId: string) => `
+  <label class="feature-switch">
+    <input
+      class="feature-toggle"
+      type="checkbox"
+      data-feature-id="${featureId}"
+      data-setting-id="${settingId}"
+    />
+    <span class="feature-slider" aria-hidden="true"></span>
+  </label>
+`
+
 const renderFeatures = () => {
   return featureDefinitions
-    .map(
-      (feature) => `
-        <div class="feature-card">
+    .map((feature) => {
+      if (feature.settings.length === 1) {
+        const [setting] = feature.settings
+
+        return `
+          <div class="feature-card">
+            <span class="feature-copy">
+              <span class="feature-title">${feature.title}</span>
+              <span class="feature-description">${setting.description}</span>
+            </span>
+            ${renderSettingToggle(feature.id, setting.id)}
+          </div>
+        `
+      }
+
+      return `
+        <div class="feature-card feature-card-group">
           <span class="feature-copy">
             <span class="feature-title">${feature.title}</span>
             <span class="feature-description">${feature.description}</span>
           </span>
-          <label class="feature-switch">
-            <input
-              class="feature-toggle"
-              type="checkbox"
-              data-feature-id="${feature.id}"
-            />
-            <span class="feature-slider" aria-hidden="true"></span>
-          </label>
+          <div class="feature-group-list">
+            ${feature.settings
+              .map(
+                (setting) => `
+                  <div class="feature-group-row">
+                    <span class="feature-group-copy">
+                      <span class="feature-group-title">${setting.title}</span>
+                      <span class="feature-group-description">${setting.description}</span>
+                    </span>
+                    ${renderSettingToggle(feature.id, setting.id)}
+                  </div>
+                `
+              )
+              .join('')}
+          </div>
         </div>
       `
-    )
+    })
     .join('')
 }
 
@@ -44,29 +79,31 @@ app.innerHTML = `
 
 const toggles = Array.from(document.querySelectorAll<HTMLInputElement>('[data-feature-id]'))
 
-const getToggleFeatureId = (toggle: HTMLInputElement): FeatureId | null => {
+const getToggleMeta = (toggle: HTMLInputElement): { featureId: FeatureId; settingId: string } | null => {
   const featureId = toggle.dataset.featureId
-  if (!featureId || !isFeatureId(featureId)) return null
-  return featureId
+  const settingId = toggle.dataset.settingId
+  if (!featureId || !isFeatureId(featureId) || !settingId || !isFeatureSettingId(featureId, settingId)) return null
+  return { featureId, settingId }
 }
 
 const syncUI = async () => {
   const settings = await loadFeatureSettings()
   toggles.forEach((toggle) => {
-    const featureId = getToggleFeatureId(toggle)
-    if (!featureId) return
-    toggle.checked = settings[featureId]
+    const toggleMeta = getToggleMeta(toggle)
+    if (!toggleMeta) return
+
+    toggle.checked = Boolean((settings[toggleMeta.featureId] as Record<string, boolean>)[toggleMeta.settingId])
   })
 }
 
 toggles.forEach((toggle) => {
   toggle.addEventListener('change', async () => {
-    const featureId = getToggleFeatureId(toggle)
-    if (!featureId) return
+    const toggleMeta = getToggleMeta(toggle)
+    if (!toggleMeta) return
 
     toggle.disabled = true
     try {
-      await setFeatureEnabled(featureId, toggle.checked)
+      await setFeatureSetting(toggleMeta.featureId, toggleMeta.settingId, toggle.checked)
     } finally {
       toggle.disabled = false
     }
