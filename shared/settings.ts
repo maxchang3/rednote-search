@@ -13,7 +13,9 @@ const FEATURE_STORAGE_KEY = 'local:feature-settings'
 const defaultFeatureSettings = Object.fromEntries(
   featureDefinitions.map((feature) => [
     feature.id,
-    Object.fromEntries(feature.settings.map((setting) => [setting.id, setting.defaultValue])),
+    Object.fromEntries(
+      ('setting' in feature ? [feature.setting] : feature.settings).map((setting) => [setting.id, setting.defaultValue])
+    ),
   ])
 ) as FeatureSettings
 
@@ -27,9 +29,10 @@ const normalizeFeatureSettingMap = <TFeatureId extends FeatureId>(
   feature: FeatureDefinitionById<TFeatureId>
 ) => {
   const defaultSettings = defaultFeatureSettings[feature.id] as Record<string, boolean>
+  const featureSettings = 'setting' in feature ? [feature.setting] : feature.settings
 
   return Object.fromEntries(
-    feature.settings.map((setting) => {
+    featureSettings.map((setting) => {
       const rawFeatureValue = normalizedValue?.[feature.id]
       const rawSettingValue =
         rawFeatureValue !== null && typeof rawFeatureValue === 'object'

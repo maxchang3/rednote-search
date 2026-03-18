@@ -21,14 +21,14 @@ const renderSettingToggle = (featureId: FeatureId, settingId: string) => `
 const renderFeatures = () => {
   return featureDefinitions
     .map((feature) => {
-      if (feature.settings.length === 1) {
-        const [setting] = feature.settings
+      if ('setting' in feature) {
+        const setting = feature.setting
 
         return `
           <div class="feature-card">
             <span class="feature-copy">
               <span class="feature-title">${feature.title}</span>
-              <span class="feature-description">${setting.description}</span>
+              <span class="feature-description">${feature.description}</span>
             </span>
             ${renderSettingToggle(feature.id, setting.id)}
           </div>

@@ -5,11 +5,29 @@ type FeatureSettingDefinition = {
   defaultValue: boolean
 }
 
-type FeatureDefinition = {
+type SingleFeatureSettingDefinition = {
+  id: string
+  defaultValue: boolean
+}
+
+type FeatureDefinitionBase = {
   id: string
   title: string
   description: string
+}
+
+type SingleFeatureDefinition = FeatureDefinitionBase & {
+  setting: SingleFeatureSettingDefinition
+}
+
+type FeatureGroupDefinition = FeatureDefinitionBase & {
   settings: readonly FeatureSettingDefinition[]
+}
+
+type FeatureDefinition = SingleFeatureDefinition | FeatureGroupDefinition
+
+const getFeatureSettings = (feature: FeatureDefinition) => {
+  return 'setting' in feature ? [feature.setting] : feature.settings
 }
 
 export const featureDefinitions = [
@@ -17,14 +35,10 @@ export const featureDefinitions = [
     id: 'hideFeed',
     title: '隐藏首页信息流',
     description: '隐藏主页信息流，搜索框页面居中。',
-    settings: [
-      {
-        id: 'hideExploreFeed',
-        title: '隐藏信息流',
-        description: '隐藏主页信息流，搜索框页面居中。',
-        defaultValue: true,
-      },
-    ],
+    setting: {
+      id: 'hideExploreFeed',
+      defaultValue: true,
+    },
   },
   {
     id: 'hideSidebarNav',
@@ -54,28 +68,20 @@ export const featureDefinitions = [
   {
     id: 'hideSearchSuggestions',
     title: '隐藏「猜你想搜」',
-    description: '隐藏搜索时出现在搜索框下方的「猜你想搜」提示。',
-    settings: [
-      {
-        id: 'hideSearchSuggestionsBox',
-        title: '隐藏「猜你想搜」',
-        description: '隐藏搜索框下方的「猜你想搜」提示。',
-        defaultValue: false,
-      },
-    ],
+    description: '隐藏搜索框下方的「猜你想搜」提示。',
+    setting: {
+      id: 'hideSearchSuggestionsBox',
+      defaultValue: true,
+    },
   },
   {
     id: 'slashFocus',
     title: '斜杠聚焦搜索',
     description: '按下 / 时，自动聚焦到搜索框。',
-    settings: [
-      {
-        id: 'focusSearchOnSlash',
-        title: '按 / 聚焦搜索',
-        description: '按下 / 时，自动聚焦到搜索框。',
-        defaultValue: true,
-      },
-    ],
+    setting: {
+      id: 'focusSearchOnSlash',
+      defaultValue: true,
+    },
   },
 ] as const satisfies readonly FeatureDefinition[]
 
@@ -86,8 +92,17 @@ export type FeatureDefinitionById<TFeatureId extends FeatureId = FeatureId> = Ex
   FeatureDefinitionItem,
   { id: TFeatureId }
 >
-export type FeatureSettingId<TFeatureId extends FeatureId = FeatureId> =
-  FeatureDefinitionById<TFeatureId>['settings'][number]['id']
+type FeatureSettingIdByDefinition<TFeatureDefinition extends FeatureDefinition> = TFeatureDefinition extends {
+  setting: infer TSetting extends { id: string }
+}
+  ? TSetting['id']
+  : TFeatureDefinition extends { settings: infer TSettings extends readonly { id: string }[] }
+    ? TSettings[number]['id']
+    : never
+
+export type FeatureSettingId<TFeatureId extends FeatureId = FeatureId> = FeatureSettingIdByDefinition<
+  FeatureDefinitionById<TFeatureId>
+>
 
 export const isFeatureId = (value: string): value is FeatureId => {
   return featureDefinitions.some((feature) => feature.id === value)
@@ -101,5 +116,5 @@ export const isFeatureSettingId = <TFeatureId extends FeatureId>(
     (feature): feature is FeatureDefinitionById<TFeatureId> => feature.id === featureId
   )
 
-  return feature?.settings.some((setting) => setting.id === value) ?? false
+  return feature ? getFeatureSettings(feature).some((setting) => setting.id === value) : false
 }
