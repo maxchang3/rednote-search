@@ -1,5 +1,4 @@
 import './style.css'
-import icon from '@/assets/icon.svg'
 
 const app = document.querySelector<HTMLDivElement>('#app')
 if (!app) throw new Error('Popup root not found')
@@ -63,11 +62,7 @@ const renderFeatures = () => {
 app.innerHTML = `
   <main class="popup-shell">
     <header class="popup-header">
-      <img src="${icon}" class="popup-logo" alt="小红搜 logo" />
-      <div>
-        <p class="popup-eyebrow">RedNote Search</p>
-        <h1>小红搜设置</h1>
-      </div>
+      <h1>小红搜</h1>
     </header>
     <section class="feature-list">
       ${renderFeatures()}

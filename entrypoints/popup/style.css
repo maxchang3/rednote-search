@@ -80,23 +80,8 @@ body {
 }
 
 .popup-header {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 14px;
-}
-
-.popup-logo {
-  width: 52px;
-  height: 52px;
-}
-
-.popup-eyebrow {
-  margin: 0 0 2px;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--popup-color-text-muted);
+  margin-top: 15px;
+  margin-bottom: 20px;
 }
 
 h1 {
