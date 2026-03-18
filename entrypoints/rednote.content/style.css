@@ -62,6 +62,6 @@
   display: none !important;
 }
 
-.RS_hide-search-suggestions .sug-box {
+.RS_hide-search-suggestions .sug-box:has(.header) {
   display: none !important;
 }
