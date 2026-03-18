@@ -4,7 +4,6 @@
   font-weight: 400;
   color-scheme: light;
   color: var(--popup-color-text-primary);
-  background: var(--popup-color-bg-canvas);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -14,9 +13,8 @@
   --popup-color-text-primary: #241f1c;
   --popup-color-text-secondary: #72615b;
   --popup-color-text-muted: #85716a;
-  --popup-color-bg-canvas: #f3eee9;
-  --popup-color-bg-surface: #faf7f4;
-  --popup-color-bg-elevated: #fffaf6;
+  --popup-color-bg-surface: #fffcfc;
+  --popup-color-bg-elevated: var(--popup-color-bg-surface);
   --popup-color-bg-accent: #f7eee8;
   --popup-color-bg-accent-soft: #f4e5de;
   --popup-color-bg-success: #edf6e6;
@@ -27,7 +25,7 @@
   --popup-color-border-pending: #d3b6aa;
   --popup-color-border-success: #b8cfa9;
   --popup-color-toggle-off: #cbc1ba;
-  --popup-color-toggle-thumb: #fffdfb;
+  --popup-color-toggle-thumb: var(--popup-color-bg-surface);
   --popup-color-accent: #d85f43;
   --popup-color-success-text: #36532a;
   --popup-color-focus-ring: rgb(216 95 67 / 28%);
@@ -40,9 +38,8 @@
     --popup-color-text-primary: #f5f5f5;
     --popup-color-text-secondary: #b3b3b3;
     --popup-color-text-muted: #8d8d8d;
-    --popup-color-bg-canvas: #0a0a0a;
     --popup-color-bg-surface: #141414;
-    --popup-color-bg-elevated: #181818;
+    --popup-color-bg-elevated: var(--popup-color-bg-surface);
     --popup-color-bg-accent: #1f1f1f;
     --popup-color-bg-accent-soft: #241a17;
     --popup-color-bg-success: #142016;
@@ -52,8 +49,8 @@
     --popup-color-border-hover: #4a4a4a;
     --popup-color-border-pending: #6b4a40;
     --popup-color-border-success: #456048;
-    --popup-color-toggle-off: #4a4a4a;
-    --popup-color-toggle-thumb: #f5f5f5;
+    --popup-color-toggle-off: var(--popup-color-border-hover);
+    --popup-color-toggle-thumb: var(--popup-color-text-primary);
     --popup-color-accent: #ef7b5f;
     --popup-color-success-text: #beddbd;
     --popup-color-focus-ring: rgb(239 123 95 / 38%);
@@ -67,7 +64,6 @@
 body {
   margin: 0;
   min-width: 360px;
-  background: var(--popup-color-bg-canvas);
   color: var(--popup-color-text-primary);
 }
 
@@ -105,7 +101,7 @@ h1 {
   grid-template-columns: 1fr auto;
   gap: 12px;
   align-items: center;
-  padding: 11px 13px;
+  padding: 11px;
   border: 1px solid var(--popup-color-border);
   border-radius: 14px;
   background: var(--popup-color-bg-surface);
