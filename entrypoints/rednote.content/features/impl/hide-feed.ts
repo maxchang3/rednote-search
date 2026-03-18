@@ -1,7 +1,7 @@
 import { defineFeatureRuntime } from '../utils'
 
 const toggleHideFeed = (force?: boolean) => {
-  document.documentElement.classList.toggle('raase', force)
+  document.documentElement.classList.toggle('RS_hide-feed', force)
 }
 
 export const setupHideFeedFeature = defineFeatureRuntime(({ getCurrentPath, isEnabled, onRouteChange }) => {
