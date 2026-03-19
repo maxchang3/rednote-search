@@ -21,6 +21,8 @@ jobs:
       - name: Run release-please
         id: release
         uses: googleapis/release-please-action@v4
+        with:
+          release-type: node
 
   build-release-assets:
     runs-on: ubuntu-latest
