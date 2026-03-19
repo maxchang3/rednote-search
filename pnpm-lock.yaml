@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      '@wxt-dev/i18n':
-        specifier: ^0.2.5
-        version: 0.2.5(wxt@0.20.18(@types/node@25.3.5)(jiti@2.6.1)(rollup@4.59.0))
     devDependencies:
       '@biomejs/biome':
         specifier: ^2.4.6
@@ -21,6 +17,9 @@ importers:
       '@wxt-dev/auto-icons':
         specifier: ^1.1.1
         version: 1.1.1(wxt@0.20.18(@types/node@25.3.5)(jiti@2.6.1)(rollup@4.59.0))
+      '@wxt-dev/i18n':
+        specifier: ^0.2.5
+        version: 0.2.5(wxt@0.20.18(@types/node@25.3.5)(jiti@2.6.1)(rollup@4.59.0))
       nano-staged:
         specifier: ^0.9.0
         version: 0.9.0
