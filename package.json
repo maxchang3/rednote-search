@@ -1,6 +1,6 @@
 {
   "name": "rednote-search",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "description": "Turn RedNote into search-first.",
   "type": "module",
@@ -35,5 +35,6 @@
     "*": [
       "biome check --no-errors-on-unmatched --files-ignore-unknown=true"
     ]
-  }
+  },
+  "packageManager": "pnpm@10.32.0"
 }
