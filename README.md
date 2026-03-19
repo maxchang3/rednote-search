@@ -1,6 +1,10 @@
 # 小红搜 - RedNote Search
-
 [English](./README.en.md)
+
+<p align="center">
+  <img width="50%"  src="https://github.com/user-attachments/assets/ad8d0cde-01c3-46f8-a2a1-f3ed3432a353" />
+  <img width="20%"  src="https://github.com/user-attachments/assets/fee087b9-e793-456c-8caa-741f713518ee" />
+</p>
 
 让小红书更像一个专注搜索的工具，目前功能包括：
 
@@ -12,7 +16,6 @@
 - ...
 
 所有功能均可在设置中开启或关闭。
-
 ## License
 
 [MIT](./LICENSE) License © [maxchang3](https://github.com/maxchang3)
