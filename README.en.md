@@ -24,6 +24,8 @@ All features can be enabled or disabled in settings.
 - Microsoft Edge Add-ons
 - [GitHub Releases](https://github.com/maxchang3/rednote-search/releases)
 
+If you prefer a lightweight version, you can install the userscript version: [Readnote-as-a-Search-Engine-JS](https://github.com/maxchang3/userscripts/tree/main/Readnote-as-a-Search-Engine-JS).
+
 ## License
 
 [MIT](./LICENSE) License © [maxchang3](https://github.com/maxchang3)

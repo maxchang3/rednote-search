@@ -19,10 +19,14 @@
 
 ## 安装
 
+小红搜支持主流的 Chromium 和 Firefox 浏览器，可以通过以下途径安装：
+
 - Chrome Web Store
 - Firefox Add-ons
 - Microsoft Edge Add-ons
 - [GitHub Releases](https://github.com/maxchang3/rednote-search/releases)
+
+如果你需要更轻量的版本，可以安装用户脚本版本：[Readnote-as-a-Search-Engine-JS](https://github.com/maxchang3/userscripts/tree/main/Readnote-as-a-Search-Engine-JS)。
 
 ## License
 
