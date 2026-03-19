@@ -96,6 +96,11 @@ type ToggleMeta = {
   }
 }[FeatureId]
 
+type ToggleMetaByFeatureId<TFeatureId extends FeatureId> = {
+  featureId: TFeatureId
+  settingId: FeatureSettingId<TFeatureId>
+}
+
 const getToggleMeta = (toggle: HTMLInputElement): ToggleMeta | null => {
   const featureId = toggle.dataset.featureId
   const settingId = toggle.dataset.settingId
@@ -105,16 +110,11 @@ const getToggleMeta = (toggle: HTMLInputElement): ToggleMeta | null => {
 
 const getSettingValue = <TFeatureId extends FeatureId>(
   settings: Awaited<ReturnType<typeof loadFeatureSettings>>,
-  toggleMeta: { featureId: TFeatureId; settingId: FeatureSettingId<TFeatureId> }
+  toggleMeta: ToggleMetaByFeatureId<TFeatureId>
 ) => {
   const featureSettings = settings[toggleMeta.featureId] as Record<FeatureSettingId<TFeatureId>, boolean>
   return featureSettings[toggleMeta.settingId]
 }
-
-const updateSetting = <TFeatureId extends FeatureId>(
-  toggleMeta: { featureId: TFeatureId; settingId: FeatureSettingId<TFeatureId> },
-  enabled: boolean
-) => setFeatureSetting(toggleMeta.featureId, toggleMeta.settingId, enabled)
 
 const syncUI = async () => {
   const settings = await loadFeatureSettings()
@@ -133,7 +133,7 @@ toggles.forEach((toggle) => {
 
     toggle.disabled = true
     try {
-      await updateSetting(toggleMeta, toggle.checked)
+      await setFeatureSetting(toggleMeta.featureId, toggleMeta.settingId, toggle.checked)
     } finally {
       toggle.disabled = false
     }
