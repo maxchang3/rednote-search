@@ -8,6 +8,15 @@ export default defineConfig({
     default_locale: 'zh_CN',
     permissions: ['storage'],
     host_permissions: ['https://www.xiaohongshu.com/*'],
+    browser_specific_settings: {
+      gecko: {
+        id: 'rednote-search@maxchang.me',
+        // @ts-expect-error - WXT doesn't support this field yet
+        data_collection_permissions: {
+          required: ['none'],
+        },
+      },
+    },
   },
   modules: ['@wxt-dev/i18n/module', '@wxt-dev/auto-icons'],
   autoIcons: {
