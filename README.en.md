@@ -6,7 +6,7 @@
   <img width="20%"  src="https://github.com/user-attachments/assets/340c41a0-bfe4-45cb-8ac1-95f03522ede9" />
 </p>
 
-Turn RedNote(Xiaohongshu) into search-first. Current features include:
+A browser extension that turns RedNote(Xiaohongshu) into a search-first tool. Current features include:
 
 - Hide the home timeline and other distracting content to keep focus on search
 - Remove Live, Create, and Notifications entries from the side navigation
@@ -16,6 +16,13 @@ Turn RedNote(Xiaohongshu) into search-first. Current features include:
 - ...
 
 All features can be enabled or disabled in settings.
+
+## Installation
+
+- Chrome Web Store
+- Firefox Add-ons
+- Microsoft Edge Add-ons
+- [GitHub Releases](https://github.com/maxchang3/rednote-search/releases)
 
 ## License
 

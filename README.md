@@ -6,7 +6,7 @@
   <img width="20%"  src="https://github.com/user-attachments/assets/fee087b9-e793-456c-8caa-741f713518ee" />
 </p>
 
-让小红书更像一个专注搜索的工具，目前功能包括：
+让小红书更像一个专注搜索的浏览器插件，目前功能包括：
 
 - 隐藏首页时间线和干扰内容，专注搜索
 - 移除侧边导航中的直播、发布、通知入口
@@ -16,6 +16,14 @@
 - ...
 
 所有功能均可在设置中开启或关闭。
+
+## 安装
+
+- Chrome Web Store
+- Firefox Add-ons
+- Microsoft Edge Add-ons
+- [GitHub Releases](https://github.com/maxchang3/rednote-search/releases)
+
 ## License
 
 [MIT](./LICENSE) License © [maxchang3](https://github.com/maxchang3)
