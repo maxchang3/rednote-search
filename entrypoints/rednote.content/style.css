@@ -52,13 +52,11 @@
   display: none !important;
 }
 
-.RS_hide-sidebar-nav-publish li:has(a[href^="https://creator.xiaohongshu.com/publish/publish"]),
-.RS_hide-sidebar-nav-publish a[href^="https://creator.xiaohongshu.com/publish/publish"] {
+.RS_hide-sidebar-nav-publish li:has(a[href^="https://creator.xiaohongshu.com/publish/publish"]) {
   display: none !important;
 }
 
-.RS_hide-sidebar-nav-notification li:has(a[href="/notification"]),
-.RS_hide-sidebar-nav-notification a[href="/notification"] {
+.RS_hide-sidebar-nav-notification li:has(a[href="/notification"]) {
   display: none !important;
 }
 
