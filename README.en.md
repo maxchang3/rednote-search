@@ -1,17 +1,17 @@
-# RedNote Search
+# RedNote Search - 小红搜
 
-RedNote Search is a browser extension for Xiaohongshu Web on desktop.
+[中文](./README.md)
 
-It is designed to reduce feed noise and make Xiaohongshu feel more like a focused search tool.
+Turn RedNote(Xiaohongshu) into search-first. Current features include:
 
-Main features:
+- Hide the home timeline and other distracting content to keep focus on search
+- Remove Live, Create, and Notifications entries from the side navigation
+- Hide the “You may want to search” suggestions below the search box
+- Hide the unread badge on the notifications button
+- Support quickly focusing the search box with `/`
+- ...
 
-- Hide the home feed and distracting homepage content
-- Remove Live Stream, Publish, and Notifications entries from the sidebar
-- Hide the suggested searches below the search box
-- Hide the unread badge on the Notifications button
-- Focus the search box quickly with `/`
-- More controls are available in the settings popup
+All features can be enabled or disabled in settings.
 
 ## License
 

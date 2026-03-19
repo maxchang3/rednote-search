@@ -12,15 +12,15 @@
   },
   "features": {
     "hideFeed": {
-      "title": "Hide home feed",
-      "description": "Hide the home feed and center the search view."
+      "title": "Hide home timeline",
+      "description": "Hide the home timeline and center the search view."
     },
     "hideSidebarNav": {
       "title": "Hide sidebar buttons",
       "description": "Hide buttons in the sidebar.",
       "settings": {
         "livelist": {
-          "title": "Live Stream",
+          "title": "Live",
           "description": "Hide the Live Stream button in the sidebar."
         },
         "publish": {
