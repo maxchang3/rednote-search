@@ -5,7 +5,7 @@
     "title": "RedNote Search",
     "pageTitle": "RedNote Search Settings",
     "reset": {
-      "idle": "Reset settings",
+      "idle": "Reset",
       "pending": "Resetting...",
       "success": "Reset"
     }
