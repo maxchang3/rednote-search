@@ -13,7 +13,7 @@
   "features": {
     "hideFeed": {
       "title": "Hide home timeline",
-      "description": "Hide the home timeline and center the search view."
+      "description": "Hide home timeline, center search view."
     },
     "hideSidebarNav": {
       "title": "Hide sidebar buttons",
