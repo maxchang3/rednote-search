@@ -19,7 +19,7 @@ All features can be enabled or disabled in settings.
 
 ## Installation
 
-- Chrome Web Store
+- [Chrome Web Store](https://chromewebstore.google.com/detail/lgeopkdefgjoeijlpdgccfejfpomjihf)
 - Firefox Add-ons
 - Microsoft Edge Add-ons
 - [GitHub Releases](https://github.com/maxchang3/rednote-search/releases)
