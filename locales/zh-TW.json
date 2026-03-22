@@ -1,6 +1,6 @@
 {
   "extName": "小紅搜",
-  "extDescription": "讓小紅書更像一個專注搜尋的工具。",
+  "extDescription": "讓小紅書更像一個專注搜尋的工具，隱藏首頁資訊流干擾，去除通知提示，一鍵聚焦搜尋，以及更多。",
   "popup": {
     "title": "小紅搜",
     "pageTitle": "小紅搜設定",

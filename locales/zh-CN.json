@@ -1,6 +1,6 @@
 {
   "extName": "小红搜",
-  "extDescription": "让小红书更像一个专注搜索的工具。",
+  "extDescription": "让小红书更像一个专注搜索的工具，隐藏首页信息流干扰，去除通知提示，一键聚焦搜索，以及更多。",
   "popup": {
     "title": "小红搜",
     "pageTitle": "小红搜设置",

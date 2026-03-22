@@ -1,6 +1,6 @@
 {
   "extName": "RedNote Search",
-  "extDescription": "Turn RedNote into search-first.",
+  "extDescription": "Turn RedNote into a search-first experience — hide feed noise, remove notifications, focus search instantly, and more.",
   "popup": {
     "title": "RedNote Search",
     "pageTitle": "RedNote Search Settings",
