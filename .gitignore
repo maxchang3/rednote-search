@@ -25,3 +25,6 @@ web-ext.config.ts
 
 # Agent skills
 .agents/*
+
+# Environment variables
+.env.*
