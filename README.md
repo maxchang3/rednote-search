@@ -22,7 +22,7 @@
 小红搜支持主流的 Chromium 和 Firefox 浏览器，可以通过以下途径安装：
 
 - [Chrome Web Store](https://chromewebstore.google.com/detail/lgeopkdefgjoeijlpdgccfejfpomjihf)
-- Firefox Add-ons
+- [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/rednote-search/)
 - Microsoft Edge Add-ons
 - [GitHub Releases](https://github.com/maxchang3/rednote-search/releases)
 
