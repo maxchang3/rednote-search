@@ -19,14 +19,15 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.6",
+    "@biomejs/biome": "^2.4.8",
     "@maxchang/biome-config": "^0.1.8",
+    "@vitejs/plugin-vue": "^6.0.5",
     "@wxt-dev/auto-icons": "^1.1.1",
     "@wxt-dev/i18n": "^0.2.5",
     "nano-staged": "^0.9.0",
     "simple-git-hooks": "^2.13.1",
     "typescript": "^5.9.3",
-    "wxt": "^0.20.18"
+    "wxt": "^0.20.20"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm nano-staged"
@@ -36,5 +37,9 @@
       "biome check --no-errors-on-unmatched --files-ignore-unknown=true"
     ]
   },
-  "packageManager": "pnpm@10.32.0"
+  "packageManager": "pnpm@10.32.0",
+  "dependencies": {
+    "vue": "^3.5.30",
+    "vue-i18n": "^11.3.0"
+  }
 }

@@ -8,6 +8,10 @@
       "idle": "重置配置",
       "pending": "重置中...",
       "success": "已重置"
+    },
+    "language": {
+      "title": "语言设置",
+      "description": "选择扩展的显示语言。"
     }
   },
   "features": {

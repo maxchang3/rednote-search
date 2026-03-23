@@ -1,3 +1,4 @@
+import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'wxt'
 
 // See https://wxt.dev/api/config.html
@@ -25,6 +26,9 @@ export default defineConfig({
   imports: {
     dirs: ['./shared/*'],
   },
+  vite: () => ({
+    plugins: [vue()],
+  }),
   webExt: {
     chromiumArgs: ['--user-data-dir=./.wxt/chrome-data'],
   },
