@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.1](https://github.com/maxchang3/rednote-search/compare/v1.0.0...v1.0.1) (2026-03-24)
+
+
+### Bug Fixes
+
+* **i18n:** refine description for hideFeed feature ([4e74e1b](https://github.com/maxchang3/rednote-search/commit/4e74e1b62629c065e1a4caf69904651c3757dd4f))
+* **i18n:** update extDescription ([1cba024](https://github.com/maxchang3/rednote-search/commit/1cba024119a5db38b8ad7d6ac63ea413927ff115))
+* **i18n:** update reset button text ([d446efe](https://github.com/maxchang3/rednote-search/commit/d446efef52f89b3116c8bfcd8b3bb5522b567b49))
+
 ## 1.0.0 (2026-03-19)
 
 
