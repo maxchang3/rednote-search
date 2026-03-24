@@ -23,7 +23,7 @@
 
 - [Chrome Web Store](https://chromewebstore.google.com/detail/lgeopkdefgjoeijlpdgccfejfpomjihf)
 - [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/rednote-search/)
-- Microsoft Edge Add-ons
+- [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/rednote-search/galfaogioipafnkphghioiimlmbkklld)
 - [GitHub Releases](https://github.com/maxchang3/rednote-search/releases)
 
 如果你需要更轻量的版本，可以安装用户脚本版本：[Readnote-as-a-Search-Engine-JS](https://github.com/maxchang3/userscripts/tree/main/Readnote-as-a-Search-Engine-JS)。
