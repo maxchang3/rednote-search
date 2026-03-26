@@ -4,7 +4,9 @@ import { useI18n } from 'vue-i18n'
 import { featureDefinitions } from '../../shared/consts'
 import { localeLabels, type SupportedLocale, setLocale, watchLocale } from '../../shared/locale'
 import { loadFeatureSettings, resetFeatureSettings, setFeatureSetting } from '../../shared/settings'
-import type { FeatureId, FeatureSettingId, FeatureSettings } from '../../shared/types'
+import type { FeatureId } from '../../shared/consts'
+import type { FeatureSettings } from '../../shared/settings'
+import type { FeatureSettingId } from '../../shared/types'
 
 const { t, locale } = useI18n<{ message: typeof import('../../locales/zh-CN.json') }, SupportedLocale>()
 

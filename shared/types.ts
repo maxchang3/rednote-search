@@ -1,7 +1,4 @@
 import type { FeatureId } from './consts'
-import type { FeatureSettings } from './settings'
-
-export type { FeatureId, FeatureSettings }
 
 type FeatureSettingDefinition = {
   id: string
