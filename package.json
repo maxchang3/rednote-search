@@ -19,14 +19,14 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.8",
+    "@biomejs/biome": "^2.4.9",
     "@maxchang/biome-config": "^0.1.8",
     "@vitejs/plugin-vue": "^6.0.5",
     "@wxt-dev/auto-icons": "^1.1.1",
     "@wxt-dev/i18n": "^0.2.5",
     "nano-staged": "^0.9.0",
     "simple-git-hooks": "^2.13.1",
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.2",
     "wxt": "^0.20.20"
   },
   "simple-git-hooks": {
@@ -39,7 +39,7 @@
   },
   "packageManager": "pnpm@10.32.0",
   "dependencies": {
-    "vue": "^3.5.30",
+    "vue": "^3.5.31",
     "vue-i18n": "^11.3.0"
   }
 }
