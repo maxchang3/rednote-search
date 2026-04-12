@@ -1,6 +1,9 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.4.6/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.4.9/schema.json",
   "extends": ["@maxchang/biome-config"],
+  "files": {
+    "includes": ["**/*.ts", "**/*.js", "**/*.json", "**/*.css", "!**/*.vue"]
+  },
   "linter": {
     "rules": {
       "complexity": {

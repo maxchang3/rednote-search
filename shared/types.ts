@@ -1,3 +1,5 @@
+import type { FeatureId } from './consts'
+
 type FeatureSettingDefinition = {
   id: string
   title: string

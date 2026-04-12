@@ -8,6 +8,10 @@
       "idle": "重設設定",
       "pending": "重設中...",
       "success": "已重設"
+    },
+    "language": {
+      "title": "語言設定",
+      "description": "選擇擴充功能的顯示語言。"
     }
   },
   "features": {

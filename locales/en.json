@@ -8,6 +8,10 @@
       "idle": "Reset",
       "pending": "Resetting...",
       "success": "Reset"
+    },
+    "language": {
+      "title": "Language",
+      "description": "Select the display language for the extension."
     }
   },
   "features": {

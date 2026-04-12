@@ -96,6 +96,10 @@ h1 {
   gap: 10px;
 }
 
+.feature-list + .feature-list {
+  margin-top: 6px;
+}
+
 .feature-card {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -259,4 +263,29 @@ h1 {
 .reset-button:disabled {
   opacity: 0.7;
   cursor: progress;
+}
+
+.locale-select {
+  padding: 6px 10px;
+  border: 1px solid var(--popup-color-border);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--popup-color-text-primary);
+  background: var(--popup-color-bg-surface);
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.locale-select:hover {
+  border-color: var(--popup-color-border-hover);
+  background: var(--popup-color-bg-accent);
+}
+
+.locale-select:focus-visible {
+  outline: 2px solid var(--popup-color-focus-ring);
+  outline-offset: 3px;
 }
